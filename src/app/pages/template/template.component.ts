@@ -14,11 +14,14 @@ export class TemplateComponent implements OnInit {
     apellido: 'Asdds',
     correo: 'asdf@sdf.fd'
   }
+
+  paises:any[]=[];
   constructor(private paisSvc:PaisService) { }
 
   ngOnInit(): void {
     this.paisSvc.getPaises().subscribe(paises=>{
       console.log(paises);
+      this.paises=paises;
     });
   }
 
