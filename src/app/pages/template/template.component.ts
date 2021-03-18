@@ -13,7 +13,7 @@ export class TemplateComponent implements OnInit {
     nombre: 'Usuario',
     apellido: 'Asdds',
     correo: 'asdf@sdf.fd',
-    pais:'ESP' //use ESP code for default opt
+    pais:'' //use ESP code for default opt
   }
 
   paises:any[]=[];
@@ -36,6 +36,7 @@ export class TemplateComponent implements OnInit {
         console.log(control);
         control.markAsTouched();
       });
+      return;
     }
     console.log(forma);
   }
