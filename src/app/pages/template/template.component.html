@@ -61,7 +61,7 @@
   <div class="form-group row">
     <label class="col-2 col-form-label">Pais</label>
     <div class="col-8">
-      <select class="form-control" name="pais" [ngModel]="usuario.pais" [disabled]="paises.length===0" required>
+      <select class="form-control" name="pais" [ngModel]="usuario.pais" [disabled]="paises.length===0" required #pais="ngModel" [class.is-invalid]="pais.invalid && pais.touched">
         <option *ngFor="let pais of paises" [value]="pais.codigo">{{pais.nombre}}</option>
       </select>
     </div>
