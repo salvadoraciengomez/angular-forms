@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { PaisService } from 'src/app/services/pais.service';
 
 @Component({
   selector: 'app-template',
@@ -13,9 +14,12 @@ export class TemplateComponent implements OnInit {
     apellido: 'Asdds',
     correo: 'asdf@sdf.fd'
   }
-  constructor() { }
+  constructor(private paisSvc:PaisService) { }
 
   ngOnInit(): void {
+    this.paisSvc.getPaises().subscribe(paises=>{
+      console.log(paises);
+    });
   }
 
   guardar(forma:NgForm){
