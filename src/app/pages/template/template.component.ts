@@ -13,7 +13,8 @@ export class TemplateComponent implements OnInit {
     nombre: 'Usuario',
     apellido: 'Asdds',
     correo: 'asdf@sdf.fd',
-    pais:'' //use ESP code for default opt
+    pais:'', //use ESP code for default opt
+    genero: 'F'
   }
 
   paises:any[]=[];
