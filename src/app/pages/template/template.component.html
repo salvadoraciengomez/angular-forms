@@ -11,12 +11,13 @@
         <input class="form-control"
                type="text"
                name="nombre"
-               [class.is-invalid]="nombre.invalid || nombre.pristine"
+               [class.is-invalid]="(nombre.invalid && nombre.touched)"
                #nombre="ngModel"
                [ngModel]="usuario.nombre"
                placeholder="Nombre"
                required
                minlength="5">
+        <small *ngIf="nombre.invalid && nombre.touched" class="form-text text-danger">Ingrese 5 caracteres</small>
       </div>
     </div>
 
@@ -25,8 +26,15 @@
       <div class="col-8">
 
         <input class="form-control"
+               [class.is-invalid]="apellido.invalid && apellido.touched"
                type="text"
-               placeholder="Apellido">
+               name="apellido"
+               #apellido="ngModel"
+               [ngModel]="usuario.apellido"
+               placeholder="Apellido"
+               minlength="2"
+               required>
+        <small *ngIf="apellido.invalid && apellido.touched" class="form-text text-danger">Ingrese 2 caracteres</small>
       </div>
     </div>
 
@@ -46,6 +54,7 @@
              [class.is-invalid]="correo.invalid && correo.touched"
              required
              >
+        <small *ngIf="correo.invalid && correo.touched" class="form-text text-danger">Ingrese correo válido</small>
     </div>
   </div>
 
