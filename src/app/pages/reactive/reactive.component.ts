@@ -13,6 +13,7 @@ export class ReactiveComponent implements OnInit {
   constructor(private formBuilder:FormBuilder, private validadores:ValidadoresService) {
     this.crearForm();
     this.cargarDatos();
+    this.crearListener();
   }
 
   ngOnInit(): void {
@@ -58,8 +59,16 @@ export class ReactiveComponent implements OnInit {
 
     //Manera de especificar un array predefinido en pasatiempos
     ['Bicicleta', 'Música', 'Mascota'].forEach(valor=>this.pasatiempos.push(this.formBuilder.control(valor)));
+  }
 
+  crearListener(){
+    this.forma.valueChanges.subscribe( valor=>{
+      console.log(valor);
+    } );
 
+    this.forma.statusChanges.subscribe(status=>{
+      console.log({status});
+    });
   }
 
 
