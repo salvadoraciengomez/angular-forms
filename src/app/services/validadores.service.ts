@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +16,20 @@ export class ValidadoresService {
       }
     }
     return null;
+
+  }
+
+  passwordsIguales(pass1Name:string, pass2Name:string){
+
+    return(formGrp:FormGroup)=>{
+      const pass1Control= formGrp.controls[pass1Name];
+      const pass2Control= formGrp.controls[pass2Name];
+
+      if(pass1Control.value=== pass2Control.value){
+        pass2Control.setErrors(null);
+      }
+      else pass2Control.setErrors({noEsIgual: true});
+    }
 
   }
 }
