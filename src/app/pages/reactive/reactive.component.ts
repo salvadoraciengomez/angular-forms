@@ -11,10 +11,13 @@ export class ReactiveComponent implements OnInit {
   forma:FormGroup;
   constructor(private formBuilder:FormBuilder) {
     this.crearForm();
+    this.cargarDatos();
   }
 
   ngOnInit(): void {
   }
+
+
   crearForm(){
     this.forma=this.formBuilder.group({
       nombre: ['',[Validators.required, Validators.minLength(5)]], //1ºarg: defaultValue. 2ºarg: validadores sincronos (no requieren acceso exterior), 3º validadores asíncronos
@@ -26,6 +29,22 @@ export class ReactiveComponent implements OnInit {
       })
     });
   }
+
+
+  cargarDatos(){
+    // this.forma.setValue({ //setValue requiere valores para cada campo //reset ignora las no establecidas, escribe en el campo el valor pero control.value=null
+    this.forma.reset({
+      nombre:'Username',
+      apellido: 'Surname',
+      correo: 'email@domain.dot',
+      direccion:{
+        calle: 'StreetName',
+        ciudad: 'CityName'
+      }
+    });
+  }
+
+
   guardar(){
     console.log(this.forma);
     if (this.forma.invalid){
@@ -37,6 +56,7 @@ export class ReactiveComponent implements OnInit {
         else control.markAsTouched();
       });
     }
+    this.forma.reset();
   }
 
   get apellidoNoValido(){
