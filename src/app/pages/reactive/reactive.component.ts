@@ -24,6 +24,12 @@ export class ReactiveComponent implements OnInit {
   }
   guardar(){
     console.log(this.forma);
+    if (this.forma.invalid){
+      return Object.values(this.forma.controls).forEach(control=>{
+        console.log(control);
+        control.markAsTouched();
+      });
+    }
   }
 
   get apellidoNoValido(){
