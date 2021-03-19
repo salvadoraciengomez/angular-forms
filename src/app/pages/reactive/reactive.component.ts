@@ -19,7 +19,11 @@ export class ReactiveComponent implements OnInit {
     this.forma=this.formBuilder.group({
       nombre: ['',[Validators.required, Validators.minLength(5)]], //1ºarg: defaultValue. 2ºarg: validadores sincronos (no requieren acceso exterior), 3º validadores asíncronos
       apellido: ['',[Validators.required,Validators.minLength(5)]],
-      correo: ['',[Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z0]{2,3}$'), Validators.required]]
+      correo: ['',[Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z0]{2,3}$'), Validators.required]],
+      direccion: this.formBuilder.group({
+        calle: ['', Validators.required],
+        ciudad: ['',Validators.required],
+      })
     });
   }
   guardar(){
