@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-reactive',
@@ -26,7 +26,10 @@ export class ReactiveComponent implements OnInit {
       direccion: this.formBuilder.group({
         calle: ['', Validators.required],
         ciudad: ['',Validators.required],
-      })
+      }),
+      pasatiempos: this.formBuilder.array([
+        [],[],[],[],[]  //Se especifica un valor estático para el número de elementos del array para pasatiempos
+      ])
     });
   }
 
@@ -82,5 +85,9 @@ export class ReactiveComponent implements OnInit {
   get ciudadNoValido(){
     return this.forma.get('direccion.ciudad').invalid && this.forma.get('direccion.ciudad').touched;
 
+  }
+
+  get pasatiempos(){
+    return this.forma.get('pasatiempos') as FormArray;
   }
 }
