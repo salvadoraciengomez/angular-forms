@@ -31,7 +31,10 @@ export class ReactiveComponent implements OnInit {
     if (this.forma.invalid){
       return Object.values(this.forma.controls).forEach(control=>{
         console.log(control);
-        control.markAsTouched();
+        if (control instanceof FormGroup){
+          Object.values(control.controls).forEach(control=> control.markAsTouched());
+        }
+        else control.markAsTouched();
       });
     }
   }
@@ -48,6 +51,16 @@ export class ReactiveComponent implements OnInit {
 
   get correoNoValido(){
     return this.forma.get('correo').invalid && this.forma.get('correo').touched;
+
+  }
+
+  get calleNoValido(){
+    return this.forma.get('direccion.calle').invalid && this.forma.get('direccion.calle').touched;
+
+  }
+
+  get ciudadNoValido(){
+    return this.forma.get('direccion.ciudad').invalid && this.forma.get('direccion.ciudad').touched;
 
   }
 }

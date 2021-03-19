@@ -56,14 +56,18 @@
           type="text"
           placeholder="Calle"
           formControlName="calle"
+          [class.is-invalid]="calleNoValido"
           >
+        <small *ngIf="calleNoValido" class="text-danger">Ingrese una calle</small>
       </div>
       <div class="col">
         <input class="form-control"
         type="text"
         placeholder="Ciudad"
         formControlName="ciudad"
+        [class.is-invalid]="ciudadNoValido"
         >
+        <small *ngIf="ciudadNoValido" class="text-danger">Ingrese una ciudad</small>
       </div>
     </div>
   </div>
