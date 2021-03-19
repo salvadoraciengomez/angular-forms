@@ -27,9 +27,7 @@ export class ReactiveComponent implements OnInit {
         calle: ['', Validators.required],
         ciudad: ['',Validators.required],
       }),
-      pasatiempos: this.formBuilder.array([
-        [],[],[],[],[]  //Se especifica un valor estático para el número de elementos del array para pasatiempos
-      ])
+      pasatiempos: this.formBuilder.array([])
     });
   }
 
@@ -45,8 +43,23 @@ export class ReactiveComponent implements OnInit {
         ciudad: 'CityName'
       }
     });
+
+
+    //Manera de especificar un array predefinido en pasatiempos
+    ['Bicicleta', 'Música', 'Mascota'].forEach(valor=>this.pasatiempos.push(this.formBuilder.control(valor)));
+
+
   }
 
+
+  agregarPasatiempo(){
+    // this.pasatiempos.push(this.formBuilder.control('Nuevo elemento', Validators.required));
+    this.pasatiempos.push(this.formBuilder.control(''));
+  }
+
+  borrarPasatiempo(i:number){
+    this.pasatiempos.removeAt(i);
+  }
 
   guardar(){
     console.log(this.forma);
@@ -61,6 +74,7 @@ export class ReactiveComponent implements OnInit {
     }
     this.forma.reset();
   }
+
 
   get apellidoNoValido(){
     return this.forma.get('apellido').invalid && this.forma.get('apellido').touched;
