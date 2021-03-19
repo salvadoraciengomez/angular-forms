@@ -24,6 +24,7 @@ export class ReactiveComponent implements OnInit {
       nombre: ['',[Validators.required, Validators.minLength(5)]], //1ºarg: defaultValue. 2ºarg: validadores sincronos (no requieren acceso exterior), 3º validadores asíncronos
       apellido: ['',[Validators.required,Validators.minLength(5), this.validadores.noHitler]],
       correo: ['',[Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z0]{2,3}$'), Validators.required]],
+      usuario: ['',,this.validadores.existeUsuario],
       pass1: ['',  Validators.required],
       pass2: ['',  Validators.required],
       direccion: this.formBuilder.group({
@@ -46,6 +47,8 @@ export class ReactiveComponent implements OnInit {
       nombre:'Username',
       apellido: 'Surname',
       correo: 'email@domain.dot',
+      pass1:'123',
+      pass2:'123',
       direccion:{
         calle: 'StreetName',
         ciudad: 'CityName'
@@ -97,6 +100,10 @@ export class ReactiveComponent implements OnInit {
   get correoNoValido(){
     return this.forma.get('correo').invalid && this.forma.get('correo').touched;
 
+  }
+
+  get usuarioNoValido(){
+    return this.forma.get('usuario').invalid && this.forma.get('usuario').touched;
   }
 
   get calleNoValido(){
