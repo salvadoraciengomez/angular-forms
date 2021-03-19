@@ -36,8 +36,8 @@ export class ReactiveComponent implements OnInit {
 
   }
 
-  // get apellidoNoValido(){
-  //   return this.forma.get('nombre').invalid && this.forma.get('nombre').touched;
+  get correoNoValido(){
+    return this.forma.get('correo').invalid && this.forma.get('correo').touched;
 
-  // }
+  }
 }

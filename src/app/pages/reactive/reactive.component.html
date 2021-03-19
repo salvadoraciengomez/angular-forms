@@ -12,7 +12,9 @@
                type="text"
                placeholder="Nombre"
                formControlName="nombre"
-               [class.is-invalid]="forma.get('nombre').invalid && forma.get('nombre').touched"> <!--Asigna el value a la propiedad nombre del objeto forma getBy [formGroup]="forma"-->
+               [class.is-invalid]="nombreNoValido"
+        >
+        <small *ngIf="nombreNoValido" class="text-danger">Ingrese al menos 5 caracteres</small>
       </div>
     </div>
 
@@ -39,7 +41,10 @@
       <input class="form-control"
              type="email"
              placeholder="Correo electrónico"
-             formControlName="correo"> <!--Asigna el value desde [formGroup] -->
+             formControlName="correo"
+             [class.is-invalid]="correoNoValido"
+      >
+      <small *ngIf="correoNoValido" class="text-danger">Ingrese un correo válido</small>
     </div>
   </div>
 
