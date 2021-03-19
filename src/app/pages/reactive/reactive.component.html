@@ -11,7 +11,8 @@
         <input class="form-control"
                type="text"
                placeholder="Nombre"
-               formControlName="nombre"> <!--Asigna el value a la propiedad nombre del objeto forma getBy [formGroup]="forma"-->
+               formControlName="nombre"
+               [class.is-invalid]="forma.get('nombre').invalid && forma.get('nombre').touched"> <!--Asigna el value a la propiedad nombre del objeto forma getBy [formGroup]="forma"-->
       </div>
     </div>
 
@@ -22,7 +23,10 @@
         <input class="form-control"
                type="text"
                placeholder="Apellido"
-               formControlName="apellido"> <!--Asigna el value desde [formGroup] -->
+               formControlName="apellido"
+               [class.is-invalid]="apellidoNoValido"
+               > <!--Asigna el value desde [formGroup] -->
+        <small *ngIf="apellidoNoValido" class="text-danger">Ingrese al menos 5 caracteres</small>
       </div>
     </div>
 
